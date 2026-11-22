@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="container">
+    <div class="row-">
+        <div class="col-md-4 offset-md-4 mt-5">
+                <h1 class="text-secondary">{{tarea.title}}</h1>
+                {{error}}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{consulta.as_p}}
+                    <button class="btn btn-primary">
+                            ACTUALIZA
+                    </button>
+                </form>
+
+                <div class="d-flex mt-5">
+                    <form action="{% url 'TAREAC' tarea.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-secondary">COMPLETAR</button>
+                    </form>
+                    <form action="{% url 'TAREAE' tarea.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">BORRAR</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
